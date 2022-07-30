@@ -4,11 +4,20 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
+.container {
+    width: 40%;
+    margin: auto;
+}
+
+/* Блок формы для отправки комментария */
 form {
     display: flex;
     align-items: stretch;
-    width: 40%;
-    margin: auto;
+    width: 100%;
+}
+
+#comment-form {
+    margin-bottom: 10px;
 }
 
 textarea {
@@ -34,10 +43,10 @@ button {
     cursor: pointer;
 }
 
+/* Блок ленты комментариев */
 #comments {
     display: table;
-    width: 40%;
-    margin: auto;
+    width: 100%;
 }
 
 .comment {
@@ -45,7 +54,7 @@ button {
     border: 1px solid #898989;
     border-radius: 5px;
     padding: 10px 15px;
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
 
@@ -54,8 +63,13 @@ button {
     justify-content: space-between;
 }
 
+.author {
+    font-weight: bold;
+}
+
 .time {
     color: #898989;
+    font-size: 0.95em;
 }
 
 .content {
@@ -70,4 +84,29 @@ button {
 .reply {
     width: unset;
     padding: 0;
+}
+
+/* Блок уведомления */
+.flash-message {
+    background-color: #D4F7FFC1;
+    border: 1px solid #1D647EC1;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+.message {
+    font-size: smaller;
+    color: #1D647EC1;
+}
+
+.close-button {
+    float: right;
+    cursor: pointer;
+}
+
+/* Блок ответов к комментарию */
+.replies {
+    width: 95%;
+    float: right;
 }

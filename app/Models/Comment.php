@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Comment extends Model
 {
@@ -19,11 +20,11 @@ class Comment extends Model
      */
     protected $fillable = ['content'];
 
-    public static function reformat(string $timestamp): string
+    /**
+     * @return hasMany
+     */
+    public function replies(): hasMany
     {
-        $time = (date('d/m/Y', strtotime($timestamp)) == date('d/m/Y')) ?
-            'today at ': date('d/m/Y', strtotime($timestamp)) . ' at ';
-
-        return $time . date('H:i', strtotime($timestamp));
+        return $this->hasMany(Comment::class, 'id_parent', 'id');
     }
 }

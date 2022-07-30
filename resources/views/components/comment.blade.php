@@ -1,17 +1,42 @@
 <div class="comment">
     <div class="header">
-        {{ $comment['author'] }}&nbsp;
-        <div class="time">
-            @if($comment['created_at'] < $comment['updated_at'])
-                <div>updated {{ App\Models\Comment::reformat($comment['updated_at']) }}</div>
-            @else
-                <div>created {{ App\Models\Comment::reformat($comment['created_at']) }}</div>
-            @endif
-        </div>
+        <div class="author">{{ $comment->author }}</div>
+        <div class="time">{{ $comment->modification_time }}</div>
     </div>
-    <div class="content">{{ $comment['content'] }}</div>
+    <div class="content">{{ $comment->content }}</div>
     <div class="toolbar">
         <!-- <div class="edit"><img src="{{ asset("images/edit.svg") }}"></div> -->
-        <button class="reply" onclick="render()"><img src="{{ asset("images/reply.svg") }}"></button>
+        <button class="reply" onclick="renderForm({{ $comment->id }})"><img src="{{ asset("images/reply.svg") }}"></button>
     </div>
 </div>
+<!-- Блок формы для отправки ответа к комментарию -->
+<div class="reply-form" id="{{ $comment->id }}"></div>
+<!-- Блок ответов к комментарию -->
+<div class="replies">
+    @foreach($comment->replies as $reply)
+        <x-comment id="{{ $reply->id }}"></x-comment>
+    @endforeach
+</div>
+<script>
+    /* Отобразить форму для отправки комментария */
+    function renderForm(id) {
+        $.ajax({
+            url: "/comment/reply",
+            type: "POST",
+            dataType: "html",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "id": id,
+            },
+            success: function (data) {
+                $('#' + id).html(data);
+            }
+        });
+
+        $('body').click(function (event) {
+            if (!$(event.target).closest('div.reply-form').length && !$(event.target).is('div.reply-form')) {
+                $('div.reply-form > *').remove();
+            }
+        });
+    }
+</script>
