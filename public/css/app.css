@@ -16,7 +16,7 @@ form {
     width: 100%;
 }
 
-#comment-form {
+.comment-form {
     margin-bottom: 10px;
 }
 
@@ -92,7 +92,7 @@ button {
     border: 1px solid #1D647EC1;
     border-radius: 5px;
     padding: 10px 15px;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 
 .message {
@@ -108,5 +108,4 @@ button {
 /* Блок ответов к комментарию */
 .replies {
     width: 95%;
-    float: right;
 }

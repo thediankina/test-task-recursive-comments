@@ -9,9 +9,7 @@
         <button class="reply" onclick="renderForm({{ $comment->id }})"><img src="{{ asset("images/reply.svg") }}"></button>
     </div>
 </div>
-<!-- Блок формы для отправки ответа к комментарию -->
 <div class="reply-form" id="{{ $comment->id }}"></div>
-<!-- Блок ответов к комментарию -->
 <div class="replies">
     @foreach($comment->replies as $reply)
         <x-comment id="{{ $reply->id }}"></x-comment>

@@ -18,7 +18,7 @@ class Comment extends Model
     /**
      * @var array
      */
-    protected $fillable = ['content'];
+    protected $fillable = ['id_parent', 'content'];
 
     /**
      * @return hasMany

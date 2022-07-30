@@ -1,4 +1,4 @@
-<form id="comment-form" action="comment/create" method="post">
+<form id="comment-form_{{ $id ?? '0' }}" class="comment-form" action="comment/create" method="post">
     @csrf
     <input type="number" name="parent_id" value="{{ $id ?? null }}" hidden>
     <textarea name="comment" onkeyup="resize(this)" placeholder="Your comment here..." autocomplete="off"></textarea>
@@ -6,7 +6,7 @@
 </form>
 <script>
     /* Отправить комментарий с помощью AJAX */
-    $('#comment-form').on('submit', function (event) {
+    $('#comment-form_' + {{ $id ?? '0'}}).on('submit', function (event) {
         event.preventDefault();
 
         $.ajax({

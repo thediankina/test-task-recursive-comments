@@ -44,13 +44,14 @@ class Controller extends BaseController
      */
     public function create(Request $request, string $message = 'Comment added successfully.'): View
     {
+        $id = $request->input('parent');
         $content = $request->input('content');
 
         if (is_null($content)) {
             $message = 'Comment can not be empty. Try again.';
         } else {
             Comment::query()->create([
-                'id_parent' => $request->input('parent'),
+                'id_parent' => $id,
                 'content' => $content,
             ]);
         }
