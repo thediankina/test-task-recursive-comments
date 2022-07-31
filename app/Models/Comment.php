@@ -25,6 +25,6 @@ class Comment extends Model
      */
     public function replies(): hasMany
     {
-        return $this->hasMany(Comment::class, 'id_parent', 'id');
+        return $this->hasMany(Comment::class, 'id_parent', 'id')->orderBy('id', 'desc');
     }
 }
