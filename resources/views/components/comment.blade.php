@@ -15,26 +15,3 @@
         <x-comment id="{{ $reply->id }}"></x-comment>
     @endforeach
 </div>
-<script>
-    /* Отобразить форму для отправки комментария */
-    function renderForm(id) {
-        $.ajax({
-            url: "/comment/reply",
-            type: "POST",
-            dataType: "html",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "id": id,
-            },
-            success: function (data) {
-                $('#' + id).html(data);
-            }
-        });
-
-        $('body').click(function (event) {
-            if (!$(event.target).closest('div.reply-form').length && !$(event.target).is('div.reply-form')) {
-                $('div.reply-form > *').remove();
-            }
-        });
-    }
-</script>

@@ -70,6 +70,7 @@ class Controller extends BaseController
     public function reply(Request $request): View
     {
         $id = $request->input('id');
+
         return ViewComponent::make('components.form', ['id' => $id]);
     }
 }

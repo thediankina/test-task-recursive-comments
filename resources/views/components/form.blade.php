@@ -9,6 +9,10 @@
     $('#comment-form_' + {{ $id ?? '0'}}).on('submit', function (event) {
         event.preventDefault();
 
+        if (this.comment.value === '') {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
         $.ajax({
             url: "/comment/create",
             type: "POST",
